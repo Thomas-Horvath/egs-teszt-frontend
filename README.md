@@ -1,6 +1,6 @@
 # EGS test frontend
 
-[github link]()
+[github link](https://thomas-horvath.github.io/egs-teszt-frontend/)
 
 test admin: 
 
