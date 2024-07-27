@@ -4,13 +4,14 @@
     box-sizing: border-box;
 }
 .header {
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5rem;
     border-bottom: 2px solid gainsboro ;
     background-color: #eee;
+    z-index: 1;
 }
 .logo{
     height: 100px;
@@ -45,4 +46,11 @@ padding: 1rem;
 .users {
     text-align: center;
     padding: 2rem;
+}
+
+.login-form input[type="text"], 
+.login-form input[type="password"] {
+    padding-right: 2.5rem; /* Növeli a jobb oldali padding-et az ikon helyigényének ellensúlyozására */
+    box-sizing: border-box;
+    width: 100%; /* Biztosítja, hogy az input mezők teljes szélességükben látszódjanak */
 }
