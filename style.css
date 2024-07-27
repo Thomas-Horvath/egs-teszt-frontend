@@ -1,0 +1,48 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5rem;
+    border-bottom: 2px solid gainsboro ;
+    background-color: #eee;
+}
+.logo{
+    height: 100px;
+}
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width:350px;
+    gap: 1rem;
+  
+}
+
+.container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+padding: 1rem;
+}
+
+.card {
+    padding: .5rem;
+    width: 250px;
+    & img {
+        width:100%;
+    }
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.users {
+    text-align: center;
+    padding: 2rem;
+}
