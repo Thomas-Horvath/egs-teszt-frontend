@@ -8,6 +8,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
     padding: 1rem 5rem;
     border-bottom: 2px solid gainsboro ;
     background-color: #eee;
@@ -53,4 +55,20 @@ padding: 1rem;
     padding-right: 2.5rem; /* Növeli a jobb oldali padding-et az ikon helyigényének ellensúlyozására */
     box-sizing: border-box;
     width: 100%; /* Biztosítja, hogy az input mezők teljes szélességükben látszódjanak */
+}
+
+@media  (max-width: 768px){
+    .logo {
+        height:50px ;
+    }
+    form {
+        width: 100%;
+    }
+    .header {
+        padding: 1rem;
+        justify-content: center;
+    }
+    body {
+        min-width: 320px;
+    }
 }
