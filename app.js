@@ -1,4 +1,5 @@
 const url = "https://thomasapi.eu"
+// const url = "http://127.0.0.1:9000"
 const form = document.querySelector('.login-form');
 
 function handleFormSubmit(event) {
@@ -9,7 +10,7 @@ function handleFormSubmit(event) {
     const user = form.user.value;
     const password = form.password.value;
 
-    fetch(url+"/api/login", {
+    fetch(url + "/api/login", {
         method: "POST",
         body: JSON.stringify({
             UserName: user,
@@ -45,7 +46,7 @@ form.addEventListener('submit', handleFormSubmit);
 
 
 function fetchProducsts() {
-    fetch(url+"/api/products")
+    fetch(url + "/api/products")
         .then(response => response.json())
         .then(data => {
             render(data)
@@ -57,11 +58,19 @@ fetchProducsts()
 
 const container = document.querySelector('.container');
 function render(data) {
+
+    // Szűrjük ki azokat a termékeket, amelyek OnSale értéke true
+    // const onSaleProducts = data.filter(x => x.OnSale);
+
+
+    // const hmtl = onSaleProducts.map((x) => `
     const hmtl = data.map((x) => `
-    <div class="card">
+    <div class="card" style="${x.OnSale ? 'background: tomato;' : ''}">
+    <p>${x.ProductID}</p>
     <img src=${x.ProductPhotoURL} alt="kép"/>
-    <p>${x.Name}</p>
-    <p>${x.Price} FT</p>
+    <p>${x.Name} </p>
+    <p>${x.OnSale ? `<del>${x.Price} FT</del> ${x.SalePrice} FT` : `${x.Price} FT`}</p>
+    <p style="${x.InStock ? 'color: green' : 'color: red'}">${x.InStock ? "Készleten" : "Rendelésre"} </p>
     </div>
     `);
     container.innerHTML = hmtl.join('');
@@ -69,7 +78,7 @@ function render(data) {
 
 const users = document.querySelector('.users');
 function fetchOrder(data) {
-    fetch(url+"/api/users", {
+    fetch(url + "/api/users", {
         method: "GET",
         headers: {
             "Content-Type": "application/json; charset=UTF-8",
@@ -79,14 +88,18 @@ function fetchOrder(data) {
     })
         .then(response => {
             return response.json().then(data => {
-                return {data , status :response.status}
-            }) 
+                return { data, status: response.status }
+            })
         })
-        .then(({data , status }) => {
+        .then(({ data, status }) => {
             if (status === 403) {
-                users.innerHTML = `<p>${data.message}</p>`;
+                users.innerHTML = `<h1>Admin felület</h1><p>${data.message}</p>`;
             } else {
-            users.innerHTML = data.map((user) => `<p>${user.UserName} , ${user.EmailAddress}</p>`).join('')
+                let html = '<h1>Admin Felület</h1><h2>Felhasználók:</h2>';
+                const userList = data.map((user) => `<p>${user.UserName} , ${user.EmailAddress}</p>`).join('');
+                console.log(userList)
+                html += userList;
+                users.innerHTML = html;
             }
         })
         .catch(error => {
@@ -96,7 +109,7 @@ function fetchOrder(data) {
 
 
 function fetchProfile(data) {
-    fetch(url+"/api/profile", {
+    fetch(url + "/api/profile", {
         method: "GET",
         headers: {
             "Content-Type": "application/json; charset=UTF-8",
