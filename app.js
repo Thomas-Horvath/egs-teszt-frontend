@@ -79,7 +79,7 @@ function render(data) {
      document.querySelectorAll('.js-card').forEach(card => {
         card.addEventListener('click', (event) => {
             const productId = event.currentTarget.getAttribute('data-product-id');
-            window.location.href = `/product.html?id=${productId}`;
+            window.location.href = `./product.html?id=${productId}`;
         });
     });
 }
