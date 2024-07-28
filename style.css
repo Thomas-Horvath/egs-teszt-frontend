@@ -64,7 +64,9 @@ form {
     width: 100%;
 }
 
-
+.adminName {
+    text-align: center;
+}
 
 .product-details {
     width: 90%;

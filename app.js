@@ -25,7 +25,7 @@ function handleFormSubmit(event) {
             return response.json();
         })
         .then(data => {
-            if (data.token) { // Feltételezve, hogy a sikeres bejelentkezésnél egy token érkezik
+            if (data.token) { 
                 sessionStorage.setItem('authToken', data.token);
                 fetchOrder(data);
                 fetchProfile(data);
@@ -49,6 +49,7 @@ form.addEventListener('submit', handleFormSubmit);
 function handleLogout() {
     sessionStorage.removeItem('authToken');
     document.querySelector('.users').innerHTML = "";
+    document.querySelector('.adminName').innerHTML = "";
 }
 
 
@@ -127,9 +128,9 @@ function fetchOrder(data) {
         .then(({ data, status }) => {
             if (status === 403) {
                 users.innerHTML = `<h1>Admin felület</h1><p>${data.message}</p>`;
-                setTimeout(() => users.innerHTML = "", 2000);
+                setTimeout(() => {users.innerHTML = ""; adminName.innerHTML=""}, 2000);
             } else {
-                let html = '<h1>Admin Felület</h1><h2>Felhasználók:</h2>';
+                let html = '<h2>Admin Felület</h2><h3>Felhasználók:</h3>';
                 const userList = data.map((user) => `<p>${user.UserName} , ${user.EmailAddress}</p>`).join('');
                 html += userList;
                 users.innerHTML = html;
@@ -140,7 +141,7 @@ function fetchOrder(data) {
         });
 }
 
-
+const adminName = document.querySelector('.adminName');
 function fetchProfile(data) {
     fetch(url + "/api/profile", {
         method: "GET",
@@ -157,7 +158,9 @@ function fetchProfile(data) {
             return response.json();
         })
         .then(data => {
-            console.log('saját profil:', data)
+           
+           let profile = `<h1>Bejelentkezett admin: ${data.LastName + ' ' + data.FirstName}</h1>` ;
+           adminName.innerHTML = profile ;
 
         })
         .catch(error => {
