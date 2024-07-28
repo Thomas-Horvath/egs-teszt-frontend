@@ -25,8 +25,13 @@ function handleFormSubmit(event) {
             return response.json();
         })
         .then(data => {
-            fetchOrder(data);
-            fetchProfile(data)
+            if (data.token) { // Feltételezve, hogy a sikeres bejelentkezésnél egy token érkezik
+                sessionStorage.setItem('authToken', data.token);
+                fetchOrder(data);
+                fetchProfile(data);
+            } else {
+                console.error('Login failed:', data.message);
+            }
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
@@ -34,10 +39,30 @@ function handleFormSubmit(event) {
 
 };
 
+
+
 form.addEventListener('submit', handleFormSubmit);
 
 
 
+
+function handleLogout() {
+    sessionStorage.removeItem('authToken');
+    document.querySelector('.users').innerHTML = "";
+}
+
+
+
+// Kijelentkezési gomb eseménykezelőjének hozzárendelése
+document.querySelector('.logoutButton').addEventListener('click', handleLogout);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const token = sessionStorage.getItem('authToken');
+    if (token) {
+        fetchOrder({ token: token });
+        fetchProfile({ token: token });
+    }
+});
 
 
 
@@ -102,6 +127,7 @@ function fetchOrder(data) {
         .then(({ data, status }) => {
             if (status === 403) {
                 users.innerHTML = `<h1>Admin felület</h1><p>${data.message}</p>`;
+                setTimeout(() => users.innerHTML = "", 2000);
             } else {
                 let html = '<h1>Admin Felület</h1><h2>Felhasználók:</h2>';
                 const userList = data.map((user) => `<p>${user.UserName} , ${user.EmailAddress}</p>`).join('');
