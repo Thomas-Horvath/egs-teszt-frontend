@@ -3,75 +3,125 @@
     margin: 0;
     box-sizing: border-box;
 }
+
 .header {
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
     padding: 1rem 5rem;
-    border-bottom: 2px solid gainsboro ;
+    border-bottom: 2px solid gainsboro;
     background-color: #eee;
     z-index: 1;
 }
-.logo{
+
+.logo {
     height: 100px;
 }
+
 form {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width:350px;
+    width: 350px;
     gap: 1rem;
-  
+
 }
 
 .container {
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
-align-items: center;
-justify-content: center;
-padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    margin: auto;
 }
 
 .card {
     padding: .5rem;
     width: 250px;
+
     & img {
-        width:100%;
+        width: 100%;
     }
+
     text-align: center;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
     & p {
         margin-top: .5rem;
         font-size: 1.2rem;
     }
 }
+
 .users {
     text-align: center;
     padding: 2rem;
+    margin: auto;
+    width: 100%;
 }
 
-.login-form input[type="text"], 
-.login-form input[type="password"] {
-    padding-right: 2.5rem; /* Növeli a jobb oldali padding-et az ikon helyigényének ellensúlyozására */
-    box-sizing: border-box;
-    width: 100%; /* Biztosítja, hogy az input mezők teljes szélességükben látszódjanak */
-}
 
-@media  (max-width: 768px){
-    .logo {
-        height:50px ;
+
+.product-details {
+    width: 90%;
+    padding: 20px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+
+    & img {
+        max-width: 500px;
+        width: 100%;
     }
+    & p {
+        margin-top: 1rem;
+    }
+    & li {
+        list-style: none;
+    }
+}
+
+.nav {
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.btn {
+    background: brown;
+    padding: .5rem 2rem;
+    width: fit-content;
+    border: none;
+    box-shadow: 2px 2px 4px #666;
+    color: #eee;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        height: 50px;
+    }
+
     form {
         width: 100%;
     }
+
     .header {
         padding: 1rem;
         justify-content: center;
     }
+
     body {
         min-width: 320px;
     }

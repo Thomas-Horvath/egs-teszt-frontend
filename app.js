@@ -65,7 +65,7 @@ function render(data) {
 
     // const hmtl = onSaleProducts.map((x) => `
     const hmtl = data.map((x) => `
-    <div class="card" style="${x.OnSale ? 'background: tomato;' : ''}">
+    <div class="card js-card" ${x.OnSale ? `style='background: tomato'` : '' } data-product-id=${x.ProductID}>
     <p>${x.ProductID}</p>
     <img src=${x.ProductPhotoURL} alt="kép"/>
     <p>${x.Name} </p>
@@ -74,6 +74,14 @@ function render(data) {
     </div>
     `);
     container.innerHTML = hmtl.join('');
+
+     // Kattintási esemény hozzárendelése minden kártyához
+     document.querySelectorAll('.js-card').forEach(card => {
+        card.addEventListener('click', (event) => {
+            const productId = event.currentTarget.getAttribute('data-product-id');
+            window.location.href = `/product.html?id=${productId}`;
+        });
+    });
 }
 
 const users = document.querySelector('.users');
@@ -97,7 +105,6 @@ function fetchOrder(data) {
             } else {
                 let html = '<h1>Admin Felület</h1><h2>Felhasználók:</h2>';
                 const userList = data.map((user) => `<p>${user.UserName} , ${user.EmailAddress}</p>`).join('');
-                console.log(userList)
                 html += userList;
                 users.innerHTML = html;
             }
@@ -131,3 +138,4 @@ function fetchProfile(data) {
             console.error('There was a problem with the fetch operation:', error);
         });
 }
+
