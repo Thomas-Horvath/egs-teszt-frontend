@@ -43,6 +43,7 @@ form {
 .card {
     padding: .5rem;
     width: 250px;
+    cursor: pointer;
 
     & img {
         width: 100%;
@@ -79,9 +80,11 @@ form {
         max-width: 500px;
         width: 100%;
     }
+
     & p {
         margin-top: 1rem;
     }
+
     & li {
         list-style: none;
     }

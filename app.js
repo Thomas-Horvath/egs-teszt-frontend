@@ -2,6 +2,9 @@ const url = "https://thomasapi.eu"
 // const url = "http://127.0.0.1:9000"
 const form = document.querySelector('.login-form');
 
+let productsData = [];
+
+
 function handleFormSubmit(event) {
     event.preventDefault(); // Megakadályozza az űrlap alapértelmezett elküldését
 
@@ -25,7 +28,7 @@ function handleFormSubmit(event) {
             return response.json();
         })
         .then(data => {
-            if (data.token) { 
+            if (data.token) {
                 sessionStorage.setItem('authToken', data.token);
                 fetchOrder(data);
                 fetchProfile(data);
@@ -77,24 +80,25 @@ function fetchProducsts() {
     fetch(url + "/api/products")
         .then(response => response.json())
         .then(data => {
-            render(data)
+           productsData = data;
+           render(productsData)
         })
 }
 
-fetchProducsts()
+fetchProducsts() 
 
 
 const container = document.querySelector('.container');
 function render(data) {
-
+    
     // Szűrjük ki azokat a termékeket, amelyek OnSale értéke true
     // const onSaleProducts = data.filter(x => x.OnSale);
-
+    
+    // <p>${x.ProductID}</p>
 
     // const hmtl = onSaleProducts.map((x) => `
     const hmtl = data.map((x) => `
-    <div class="card js-card" ${x.OnSale ? `style='background: tomato'` : '' } data-product-id=${x.ProductID}>
-    <p>${x.ProductID}</p>
+    <div class="card js-card" ${x.OnSale ? `style='background: tomato'` : ''} data-product-id=${x.ProductID}>
     <img src=${x.ProductPhotoURL} alt="kép"/>
     <p>${x.Name} </p>
     <p>${x.OnSale ? `<del>${x.Price} FT</del> ${x.SalePrice} FT` : `${x.Price} FT`}</p>
@@ -103,8 +107,8 @@ function render(data) {
     `);
     container.innerHTML = hmtl.join('');
 
-     // Kattintási esemény hozzárendelése minden kártyához
-     document.querySelectorAll('.js-card').forEach(card => {
+    // Kattintási esemény hozzárendelése minden kártyához
+    document.querySelectorAll('.js-card').forEach(card => {
         card.addEventListener('click', (event) => {
             const productId = event.currentTarget.getAttribute('data-product-id');
             window.location.href = `./product.html?id=${productId}`;
@@ -130,7 +134,7 @@ function fetchOrder(data) {
         .then(({ data, status }) => {
             if (status === 403) {
                 users.innerHTML = `<h1>Admin felület</h1><p>${data.message}</p>`;
-                setTimeout(() => {users.innerHTML = ""; adminName.innerHTML=""}, 2000);
+                setTimeout(() => { users.innerHTML = ""; adminName.innerHTML = "" }, 2000);
             } else {
                 let html = '<h2>Admin Felület</h2><h3>Felhasználók:</h3>';
                 const userList = data.map((user) => `<p>${user.UserName} , ${user.EmailAddress}</p>`).join('');
@@ -160,9 +164,9 @@ function fetchProfile(data) {
             return response.json();
         })
         .then(data => {
-           
-           let profile = `<h1>Bejelentkezett admin: ${data.LastName + ' ' + data.FirstName}</h1>` ;
-           adminName.innerHTML = profile ;
+
+            let profile = `<h1>Bejelentkezett admin: ${data.LastName + ' ' + data.FirstName}</h1>`;
+            adminName.innerHTML = profile;
 
         })
         .catch(error => {
