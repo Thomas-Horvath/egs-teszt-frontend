@@ -29,6 +29,8 @@ function handleFormSubmit(event) {
                 sessionStorage.setItem('authToken', data.token);
                 fetchOrder(data);
                 fetchProfile(data);
+                form.user.value = "";
+                form.password.value = "";
             } else {
                 console.error('Login failed:', data.message);
             }
