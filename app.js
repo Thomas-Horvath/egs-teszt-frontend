@@ -1,8 +1,15 @@
 const url = "https://thomasapi.eu"
 // const url = "http://127.0.0.1:9000"
 const form = document.querySelector('.login-form');
+const logOutButton = document.querySelector('.logoutButton');
+const container = document.querySelector('.container');
+const users = document.querySelector('.users');
+const adminName = document.querySelector('.adminName');
+
 
 let productsData = [];
+
+
 
 
 function handleFormSubmit(event) {
@@ -39,7 +46,7 @@ function handleFormSubmit(event) {
             }
         })
         .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
+            console.error('Hiba:', error);
         });
 
 };
@@ -60,7 +67,7 @@ function handleLogout() {
 
 
 // Kijelentkezési gomb eseménykezelőjének hozzárendelése
-document.querySelector('.logoutButton').addEventListener('click', handleLogout);
+logOutButton.addEventListener('click', handleLogout);
 
 document.addEventListener('DOMContentLoaded', () => {
     const token = sessionStorage.getItem('authToken');
@@ -80,20 +87,20 @@ function fetchProducsts() {
     fetch(url + "/api/products")
         .then(response => response.json())
         .then(data => {
-           productsData = data;
-           render(productsData)
+            productsData = data;
+            render(productsData)
         })
 }
 
-fetchProducsts() 
+fetchProducsts()
 
 
-const container = document.querySelector('.container');
+
 function render(data) {
-    
+
     // Szűrjük ki azokat a termékeket, amelyek OnSale értéke true
     // const onSaleProducts = data.filter(x => x.OnSale);
-    
+
     // <p>${x.ProductID}</p>
 
     // const hmtl = onSaleProducts.map((x) => `
@@ -107,8 +114,10 @@ function render(data) {
     `);
     container.innerHTML = hmtl.join('');
 
+
+    const cards = document.querySelectorAll('.js-card');
     // Kattintási esemény hozzárendelése minden kártyához
-    document.querySelectorAll('.js-card').forEach(card => {
+    cards.forEach(card => {
         card.addEventListener('click', (event) => {
             const productId = event.currentTarget.getAttribute('data-product-id');
             window.location.href = `./product.html?id=${productId}`;
@@ -116,7 +125,7 @@ function render(data) {
     });
 }
 
-const users = document.querySelector('.users');
+
 function fetchOrder(data) {
     fetch(url + "/api/users", {
         method: "GET",
@@ -143,11 +152,14 @@ function fetchOrder(data) {
             }
         })
         .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
+            console.error('Hiba:', error);
         });
 }
 
-const adminName = document.querySelector('.adminName');
+
+
+
+
 function fetchProfile(data) {
     fetch(url + "/api/profile", {
         method: "GET",
@@ -159,7 +171,7 @@ function fetchProfile(data) {
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
+                throw new Error('Válasz státusz nem jó. Hiba kód: ' + response.status);
             }
             return response.json();
         })
@@ -170,7 +182,7 @@ function fetchProfile(data) {
 
         })
         .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
+            console.error('Hiba:', error);
         });
 }
 
