@@ -1,4 +1,5 @@
-const url = "https://thomasapi.eu";
+const url = "https://thomasapi.eu"
+// const url = "http://127.0.0.1:9000"
 const params = new URLSearchParams(window.location.search);
 const productId = params.get('id');
 

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/logoFavicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Új Termék</title>
+</head>
+
+<body>
+    <header class="header">
+        <img class="logo" src="./assets/logo.svg" alt="logo">
+
+    </header>
+    <div class="nav">
+        <a class="btn" href="./index.html">Home</a>
+        <a class="btn" href="./newproduct.html">Új termék</a>
+    </div>
+    <div class="form-container">
+        <h1>Termék Frissítése</h1>
+        <form id="productForm" enctype="multipart/form-data">
+            <div>
+                <label for="name">Név:</label>
+                <input type="text" id="name" name="Name">
+            </div>
+            <div>
+                <label for="modell">Modell:</label>
+                <input type="text" id="modell" name="Modell">
+            </div>
+            <div>
+                <label for="color">Szín:</label>
+                <input type="text" id="color" name="Color">
+            </div>
+            <div>
+                <label for="quality">Minőség:</label>
+                <input type="text" id="quality" name="Quality">
+            </div>
+            <div>
+                <label for="bundsNumber">Bundok száma:</label>
+                <input type="text" id="bundsNumber" name="BundsNumber">
+            </div>
+            <div>
+                <label for="body">Test:</label>
+                <input type="text" id="body" name="Body">
+            </div>
+            <div>
+                <label for="neck">Nyak:</label>
+                <input type="text" id="neck" name="Neck">
+            </div>
+            <div>
+                <label for="fretBoard">Fogólap:</label>
+                <input type="text" id="fretBoard" name="FretBoard">
+            </div>
+            <div>
+                <label for="pickup">Hangszedő:</label>
+                <input type="text" id="pickup" name="Pickup">
+            </div>
+            <div>
+                <label for="weight">Súly:</label>
+                <input type="text" id="weight" name="Weight">
+            </div>
+            <div>
+                <label for="chanelsNumber">Csatornák száma:</label>
+                <input type="text" id="chanelsNumber" name="ChanelsNumber">
+            </div>
+            <div>
+                <label for="speakersNumber">Hangszórók száma:</label>
+                <input type="text" id="speakersNumber" name="SpeakersNumber">
+            </div>
+            <div>
+                <label for="wattage">Teljesítmény:</label>
+                <input type="text" id="wattage" name="Wattage">
+            </div>
+            <div>
+                <label for="widht">Szélesség:</label>
+                <input type="text" id="widht" name="Widht">
+            </div>
+            <div>
+                <label for="lenght">Hossz:</label>
+                <input type="text" id="lenght" name="Lenght">
+            </div>
+            <div>
+                <label for="thickness">Vastagság:</label>
+                <input type="text" id="thickness" name="Thickness">
+            </div>
+            <div>
+                <label for="cableLenght">Kábel hossz:</label>
+                <input type="text" id="cableLenght" name="CableLenght">
+            </div>
+            <div>
+                <label for="connectorType">Csatlakozó típusa:</label>
+                <input type="text" id="connectorType" name="ConnectorType">
+            </div>
+            <div>
+                <label for="radius">Sugár:</label>
+                <input type="text" id="radius" name="Radius">
+            </div>
+            <div>
+                <label for="categoryName">Kategória név:</label>
+                <input type="text" id="categoryName" name="CategoryName">
+            </div>
+            <div>
+                <label for="subCategoryName">Alkategória név:</label>
+                <input type="text" id="subCategoryName" name="SubCategoryName">
+            </div>
+            <div>
+                <label for="brandName">Márka név:</label>
+                <input type="text" id="brandName" name="BrandName">
+            </div>
+            <div>
+                <label for="price">Ár:</label>
+                <input type="number" id="price" name="Price">
+            </div>
+            <div>
+                <label for="description">Leírás:</label>
+                <textarea id="description" name="Description"></textarea>
+            </div>
+            <div>
+                <label for="productPhoto">Termékfotó:</label>
+                <input type="file" id="productPhoto" name="productPhoto">
+            </div>
+            <div>
+                <label for="onSale">Akciós:</label>
+                <input type="checkbox" id="onSale" name="OnSale">
+            </div>
+            <div>
+                <label for="salePrice">Akciós ár:</label>
+                <input type="number" id="salePrice" name="SalePrice">
+            </div>
+            <div>
+                <label for="isStock">Raktáron:</label>
+                <input type="checkbox" id="isStock" name="IsStock">
+            </div>
+            <button class="btn" type="submit">Frissítés</button>
+            <a class="btn" href="./index.html">Mégsem</a>
+        </form>
+    </div>
+    <script src="./scripts/updateproduct.js"></script>
+</body>
+
+</html>

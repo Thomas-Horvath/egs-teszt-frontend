@@ -4,78 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/logoFavicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Új Termék</title>
 </head>
 
 <body>
-    <h1>Új Termék Hozzáadása</h1>
-    <form id="productForm" enctype="multipart/form-data">
-        <div>
-            <label for="Name">Név:</label>
-            <input type="text" id="Name" name="Name" required>
-        </div>
-        <div>
-            <label for="Modell">Modell:</label>
-            <input type="text" id="Modell" name="Modell" required>
-        </div>
-        <div>
-            <label for="Quality">Minőség:</label>
-            <input type="text" id="Quality" name="Quality" required>
-        </div>
-        <div>
-            <label for="CategoryName">Kategória neve:</label>
-            <input type="text" id="CategoryName" name="CategoryName" required>
-        </div>
-        <div>
-            <label for="SubCategoryName">Alkategória neve:</label>
-            <input type="text" id="SubCategoryName" name="SubCategoryName" required>
-        </div>
-        <div>
-            <label for="BrandName">Márkanév:</label>
-            <input type="text" id="BrandName" name="BrandName" required>
-        </div>
-        <div>
-            <label for="Price">Ár:</label>
-            <input type="number" id="Price" name="Price" required>
-        </div>
-        <div>
-            <label for="Description">Leírás:</label>
-            <textarea id="Description" name="Description" required></textarea>
-        </div>
-        <div>
-            <label for="productPhoto">Termékfotó:</label>
-            <input type="file" id="productPhoto" name="productPhoto" accept="image/*" required>
-        </div>
-        <button type="submit">Termék Létrehozása</button>
-    </form>
+    <header class="header">
+        <img class="logo" src="./assets/logo.svg" alt="logo">
 
-    <script>
-        document.getElementById('productForm').addEventListener('submit', async function (event) {
-            event.preventDefault();
-            const formData = new FormData(this);
-           
-            const token = sessionStorage.getItem('authToken');
-            try {
-                const response = await fetch("https://thomasapi.eu/api/newproduct", {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        "Authorization": "Bearer " + token
-                    },
-                    mode: "cors"
-                })
-
-                const result = await response.json();
-                if (response.ok) {
-                    console.log('Termék sikeresen hozzáadva');
-                } else {
-                    console.log('Hiba történt: ' + result.message);
-                }
-            } catch (error) {
-                console.log('Hiba történt: ' + error.message);
-            }
-        });
-    </script>
+    </header>
+    <div class="nav">
+        <a class="btn" href="./index.html">Home</a>
+    </div>
+    <div class="form-container">
+        <h1>Új Termék Hozzáadása</h1>
+        <form id="productForm" enctype="multipart/form-data">
+            <div>
+                <label for="Name">Név:</label>
+                <input type="text" id="Name" name="Name" required>
+            </div>
+            <div>
+                <label for="Modell">Modell:</label>
+                <input type="text" id="Modell" name="Modell" required>
+            </div>
+            <div>
+                <label for="Quality">Minőség:</label>
+                <input type="text" id="Quality" name="Quality" required>
+            </div>
+            <div>
+                <label for="CategoryName">Kategória neve:</label>
+                <input type="text" id="CategoryName" name="CategoryName" required>
+            </div>
+            <div>
+                <label for="SubCategoryName">Alkategória neve:</label>
+                <input type="text" id="SubCategoryName" name="SubCategoryName" required>
+            </div>
+            <div>
+                <label for="BrandName">Márkanév:</label>
+                <input type="text" id="BrandName" name="BrandName" required>
+            </div>
+            <div>
+                <label for="Price">Ár:</label>
+                <input type="number" id="Price" name="Price" required>
+            </div>
+            <div>
+                <label for="Description">Leírás:</label>
+                <textarea id="Description" name="Description" required></textarea>
+            </div>
+            <div>
+                <label for="productPhoto">Termékfotó:</label>
+                <input type="file" id="productPhoto" name="productPhoto" accept="image/*" required>
+            </div>
+            <button class="btn" type="submit">Termék Létrehozása</button>
+            <a class="btn" href="./index.html">Mégsem</a>
+        </form>
+    </div>
+    <script src="./scripts/newproduct.js"></script>
 </body>
 
 </html>
