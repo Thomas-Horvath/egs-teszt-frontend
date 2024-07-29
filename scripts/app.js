@@ -9,7 +9,7 @@ const adminName = document.querySelector('.adminName');
 const newProductBtn = document.querySelector('.js-newproduct-btn');
 ;
 let productsData = [];
-
+users.innerHTML = "";
 
 
 
