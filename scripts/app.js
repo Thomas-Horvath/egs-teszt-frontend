@@ -75,7 +75,15 @@ function fetchProducstsLogOut() {
         })
 }
 function fetchProducstsAdmin() {
-    fetch(url + "/api/products")
+    const token = sessionStorage.getItem('authToken');
+    fetch(url + "/api/products", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8",
+            "Authorization": "Bearer " + token
+        },
+        mode: "cors"
+    })
         .then(response => response.json())
         .then(data => {
             productsData = data;

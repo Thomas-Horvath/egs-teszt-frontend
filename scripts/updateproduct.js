@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('description').value = product.Description;
     document.getElementById('onSale').checked = product.OnSale;
     document.getElementById('salePrice').value = product.SalePrice;
-    document.getElementById('isStock').checked = product.IsStock;
+    document.getElementById('inStock').checked = product.InStock;
 });
 
 document.getElementById('productForm').addEventListener('submit', async (event) => {
@@ -43,11 +43,11 @@ document.getElementById('productForm').addEventListener('submit', async (event) 
     const formData = new FormData(event.target);
     // Checkboxok értékének átalakítása
     const onSale = document.getElementById('onSale').checked;
-    const isStock = document.getElementById('isStock').checked;
+    const inStock = document.getElementById('inStock').checked;
 
     // Átalakítjuk a checkboxokat boolean értékekre
     formData.set('OnSale', onSale);
-    formData.set('IsStock', isStock);
+    formData.set('InStock', inStock);
 
     const response = await fetch(url + `/api/product/${productId}`, {
         method: 'PUT',
@@ -60,6 +60,9 @@ document.getElementById('productForm').addEventListener('submit', async (event) 
 
     if (response.ok) {
         console.log('A termék sikeresen frissítve!');
+        // setTimeout(() =>{
+        //     window.location.href = 'index.html';
+        // },1000)
     } else {
         console.log('Hiba történt a termék frissítése során.');
     }

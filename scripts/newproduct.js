@@ -20,7 +20,7 @@
               console.log('Termék sikeresen hozzáadva');
               setTimeout(() => {
                   window.location.href = 'index.html';
-              }, 2000);
+              }, 1000);
           } else {
               console.log('Hiba történt: ' + result.message);
           }
