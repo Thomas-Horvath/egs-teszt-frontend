@@ -207,21 +207,14 @@ function fetchLogin(data) {
     })
         .then(response => {
             return response.json().then(data => {
-                return { data, status: response.status }
+                return data
             })
         })
-        .then(({ data, status }) => {
-            if (status === 403) {
-                users.innerHTML = `<h1>Admin felület</h1><p>${data.message}</p>`;
-                setTimeout(() => { users.innerHTML = ""; adminName.innerHTML = "" }, 2000);
-            } else {
-                let html = '<h2>Admin Felület</h2><h3>Felhasználók:</h3>';
-
-                const userList = data.map((user) => `<p>${user.UserName} , ${user.EmailAddress}</p>`).join('');
-                html += userList;
-                users.innerHTML = html;
-
-
+        .then( data => {
+            if (data.IsAdmin === false) {
+                users.innerHTML = `<h1>Vásárlói felület</h1><p>Felhasználó${data.UserName}</p>`;
+            } else  {
+                users.innerHTML = `<h1>Admin felület</h1><p>Felhasználó${data.UserName}</p>`;
                 newProductBtn.classList.add('active');
             }
         })
