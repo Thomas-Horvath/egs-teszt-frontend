@@ -205,16 +205,12 @@ function fetchLogin(data) {
         },
         mode: "cors"
     })
-        .then(response => {
-            return response.json().then(data => {
-                return data
-            })
-        })
-        .then( data => {
+        .then(response => response.json())
+        .then((data) => {
             users.innerHTML = "";
             if (data.IsAdmin === false) {
                 users.innerHTML = `<h1>Vásárlói felület</h1><p>Felhasználó${data.UserName}</p>`;
-            } else  {
+            } else {
                 users.innerHTML = `<h1>Admin felület</h1><p>Felhasználó${data.UserName}</p>`;
                 newProductBtn.classList.add('active');
             }
