@@ -60,14 +60,14 @@ function handleLogout() {
     sessionStorage.removeItem('authToken');
     document.querySelector('.users').innerHTML = "";
     document.querySelector('.adminName').innerHTML = "";
-    fetchProducstsLogOut();
+    fetchProductsLogOut();
     newProductBtn.classList.remove('active');
 }
 
 
 
 
-function fetchProducstsLogOut() {
+function fetchProductsLogOut() {
     fetch(url + "/api/products")
         .then(response => response.json())
         .then(data => {
@@ -253,7 +253,7 @@ function fetchProfile(data) {
             if (data.IsAdmin === true) {
                 let profile = `<h1>Bejelentkezett admin: ${data.LastName + ' ' + data.FirstName}</h1>`;
                 adminName.innerHTML = profile;
-                fetchProducstsAdmin()
+                fetchProductsAdmin()
 
             } else {
                 let profile = `<h1>Hozzáférés megtagadva!</h1>`;
