@@ -60,9 +60,9 @@ document.getElementById('productForm').addEventListener('submit', async (event) 
 
     if (response.ok) {
         console.log('A termék sikeresen frissítve!');
-        // setTimeout(() =>{
-        //     window.location.href = 'index.html';
-        // },1000)
+        setTimeout(() =>{
+            window.location.href = '/egs-teszt-frontend/index.html';
+        },1000)
     } else {
         console.log('Hiba történt a termék frissítése során.');
     }
