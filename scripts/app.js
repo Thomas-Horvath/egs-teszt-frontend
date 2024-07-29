@@ -40,7 +40,6 @@ function handleFormSubmit(event) {
         .then(data => {
             if (data.token) {
                 sessionStorage.setItem('authToken', data.token);
-                fetchLogin(data);
                 fetchProfile(data);
                 form.user.value = "";
                 form.password.value = "";
@@ -196,30 +195,6 @@ function deleteFetch(productId) {
 }
 
 
-function fetchLogin(data) {
-    fetch(url + "/api/users", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json; charset=UTF-8",
-            "Authorization": "Bearer " + data.token
-        },
-        mode: "cors"
-    })
-        .then(response => response.json())
-        .then((data) => {
-            users.innerHTML = "";
-            if (data.IsAdmin === false) {
-                users.innerHTML = `<h1>Vásárlói felület</h1><p>Felhasználó${data.UserName}</p>`;
-            } else {
-                users.innerHTML = `<h1>Admin felület</h1><p>Felhasználó${data.UserName}</p>`;
-                newProductBtn.classList.add('active');
-            }
-        })
-        .catch(error => {
-            console.error('Hiba:', error);
-        });
-}
-
 
 
 
@@ -239,18 +214,19 @@ function fetchProfile(data) {
             }
             return response.json();
         })
-        .then(data => {
-            if (data.IsAdmin === true) {
-                let profile = `<h1>Bejelentkezett admin: ${data.LastName + ' ' + data.FirstName}</h1>`;
-                adminName.innerHTML = profile;
-                fetchProductsAdmin()
 
+        .then((data) => {
+            users.innerHTML = "";
+            if (data.IsAdmin === false) {
+                users.innerHTML = `<h1>Vásárlói felület</h1><p>Felhasználó: ${data.UserName}</p>`;
+                newProductBtn.classList.remove('active');
             } else {
-                let profile = `<h1>Hozzáférés megtagadva!</h1>`;
-                adminName.innerHTML = profile;
+                users.innerHTML = `<h1>Admin felület</h1><p>Felhasználó: ${data.UserName}</p>`;
+                newProductBtn.classList.add('active');
+                fetchProductsAdmin();
             }
-
         })
+
         .catch(error => {
             console.error('Hiba:', error);
         });
@@ -274,7 +250,6 @@ logOutButton.addEventListener('click', handleLogout);
 document.addEventListener('DOMContentLoaded', () => {
     const token = sessionStorage.getItem('authToken');
     if (token) {
-        fetchLogin({ token: token });
         fetchProfile({ token: token });
     }
 });
