@@ -1,5 +1,6 @@
-const url = "https://thomasapi.eu"
+// const url = "https://thomasapi.eu"
 // const url = "http://127.0.0.1:9000"
+const url = "https://egs-backend.onrender.com/"
 const form = document.querySelector('.login-form');
 const logOutButton = document.querySelector('.logoutButton');
 const container = document.querySelector('.container');
@@ -74,7 +75,7 @@ function fetchProducstsLogOut() {
             render(productsData)
         })
 }
-function fetchProducstsAdmin() {
+function fetchProductsAdmin() {
     const token = sessionStorage.getItem('authToken');
     fetch(url + "/api/products", {
         method: "GET",
@@ -190,7 +191,7 @@ function deleteFetch(productId) {
         })
         .then(res => {
             console.log(res);
-            fetchProducstsAdmin();
+            fetchProductsAdmin();
         })
 }
 
