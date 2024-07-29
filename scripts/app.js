@@ -220,6 +220,7 @@ function fetchProfile(data) {
             if (data.IsAdmin === false) {
                 users.innerHTML = `<h1>Vásárlói felület</h1><p>Felhasználó: ${data.UserName}</p>`;
                 newProductBtn.classList.remove('active');
+                fetchProductsLogOut();
             } else {
                 users.innerHTML = `<h1>Admin felület</h1><p>Felhasználó: ${data.UserName}</p>`;
                 newProductBtn.classList.add('active');
