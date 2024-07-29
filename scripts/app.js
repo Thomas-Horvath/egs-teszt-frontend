@@ -1,6 +1,6 @@
-// const url = "https://thomasapi.eu"
+const url = "https://thomasapi.eu"
 // const url = "http://127.0.0.1:9000"
-const url = "https://egs-backend.onrender.com"
+// const url = "https://egs-backend.onrender.com"
 const form = document.querySelector('.login-form');
 const logOutButton = document.querySelector('.logoutButton');
 const container = document.querySelector('.container');
