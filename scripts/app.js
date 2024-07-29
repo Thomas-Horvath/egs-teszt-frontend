@@ -211,6 +211,7 @@ function fetchLogin(data) {
             })
         })
         .then( data => {
+            users.innerHTML = "";
             if (data.IsAdmin === false) {
                 users.innerHTML = `<h1>Vásárlói felület</h1><p>Felhasználó${data.UserName}</p>`;
             } else  {
