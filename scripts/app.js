@@ -290,4 +290,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-fetchProducstsLogOut()
+fetchProductsLogOut()
