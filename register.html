@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/logoFavicon.svg" type="image/x-icon">
+    <title>EGS - Webshop - API teszt</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <img class="logo" src="./assets/logo.svg" alt="logo">
+  
+    </header>
+    <div class="nav">
+        <a class="btn" href="./index.html">Főoldal</a>
+        
+   </div>
+   <div class="form-container">
+    <h1>Regisztráció</h1>
+    <form id="register" enctype="multipart/form-data">
+        <div>
+            <label for="username">Felhasználónév:</label>
+            <input type="text" id="username" name="UserName" required>
+        </div>
+        <div>
+            <label for="password">Jelszó:</label>
+            <input type="password" id="password" name="Password" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="Email" required>
+        </div>
+        <div>
+            <label for="lastname">Vezeték név:</label>
+            <input type="text" id="lastname" name="LastName" required>
+        </div>
+        <div>
+            <label for="firstname">Kereszt név:</label>
+            <input type="text" id="firstname" name="FirstName" required>
+        </div>
+        <button class="btn" type="submit">Regisztráció</button>
+        <a class="btn" href="./index.html">Mégsem</a>
+    </form>
+    
+   </div>
+   <div class="success-alert"></div>
+    <script src="./scripts/register.js"></script>
+</body>
+
+</html>

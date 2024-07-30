@@ -5,7 +5,7 @@ const form = document.querySelector('.login-form');
 const logOutButton = document.querySelector('.logoutButton');
 const container = document.querySelector('.container');
 const users = document.querySelector('.users');
-
+const registerBtn = document.querySelector('.register-btn');
 const newProductBtn = document.querySelector('.js-newproduct-btn');
 const profilebtn = document.querySelector('.profile-btn');
 const adminBtn = document.querySelector('.adminProfile-btn');
@@ -63,6 +63,8 @@ function handleLogout() {
     newProductBtn.classList.remove('active');
     profilebtn.classList.remove('active');
     adminBtn.classList.remove('active');
+    logOutButton.classList.remove('active');
+registerBtn.classList.add('active');
 }
 
 
@@ -222,12 +224,16 @@ function fetchProfile(data) {
             if (data.IsAdmin === false) {
                 profilebtn.classList.add("active");
                 users.innerHTML = `<h1>Vásárlói felület</h1><p>Felhasználó: ${data.UserName}</p>`;
+                logOutButton.classList.add('active');
+                registerBtn.classList.remove("active");
             } else {
                 
                 users.innerHTML = `<h1>Admin felület</h1><p>Felhasználó: ${data.UserName}</p>`;
                 newProductBtn.classList.add('active');
                 adminBtn.classList.add("active");
                 fetchProductsAdmin();
+                logOutButton.classList.add('active');
+                registerBtn.classList.remove("active");
             }
         })
 

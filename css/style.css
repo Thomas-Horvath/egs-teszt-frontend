@@ -119,7 +119,7 @@ form {
 .profile-btn {
     display: none;
 }
-.adminProfile-btn {
+.adminProfile-btn , .register-btn , .logoutButton{
     display: none;
 }
 .active {
@@ -159,3 +159,5 @@ a {
         min-width: 320px;
     }
 }
+
+
