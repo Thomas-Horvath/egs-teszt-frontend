@@ -29,7 +29,9 @@ form {
     gap: 1rem;
 
 }
-
+.main-title {
+    text-align: center;
+}
 .container {
     display: flex;
     gap: 2rem;

@@ -5,6 +5,7 @@ const form = document.querySelector('.login-form');
 const logOutButton = document.querySelector('.logoutButton');
 const container = document.querySelector('.container');
 const users = document.querySelector('.users');
+
 const newProductBtn = document.querySelector('.js-newproduct-btn');
 const profilebtn = document.querySelector('.profile-btn');
 const adminBtn = document.querySelector('.adminProfile-btn');

@@ -67,6 +67,7 @@ function fetchUsers(data) {
          <p>Teljes név: ${user.LastName} ${user.FirstName}</p>
          <p>Email cím: ${user.EmailAddress}</p>
          <p>Telefonszám: ${user.PhoneNumber}</p>
+         <p>Admin:  ${user.IsAdmin ? "igen" : "nem"}  </p>
          `
             ).join(" ")
 
