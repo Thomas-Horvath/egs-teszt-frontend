@@ -5,9 +5,9 @@ const form = document.querySelector('.login-form');
 const logOutButton = document.querySelector('.logoutButton');
 const container = document.querySelector('.container');
 const users = document.querySelector('.users');
-const adminName = document.querySelector('.adminName');
 const newProductBtn = document.querySelector('.js-newproduct-btn');
-;
+const profilebtn = document.querySelector('.profile-btn');
+const adminBtn = document.querySelector('.adminProfile-btn');
 let productsData = [];
 users.innerHTML = "";
 
@@ -58,9 +58,10 @@ function handleFormSubmit(event) {
 function handleLogout() {
     sessionStorage.removeItem('authToken');
     document.querySelector('.users').innerHTML = "";
-    document.querySelector('.adminName').innerHTML = "";
     fetchProductsLogOut();
     newProductBtn.classList.remove('active');
+    profilebtn.classList.remove('active');
+    adminBtn.classList.remove('active');
 }
 
 
@@ -218,12 +219,13 @@ function fetchProfile(data) {
         .then((data) => {
             users.innerHTML = "";
             if (data.IsAdmin === false) {
+                profilebtn.classList.add("active");
                 users.innerHTML = `<h1>Vásárlói felület</h1><p>Felhasználó: ${data.UserName}</p>`;
-                newProductBtn.classList.remove('active');
-                fetchProductsLogOut();
             } else {
+                
                 users.innerHTML = `<h1>Admin felület</h1><p>Felhasználó: ${data.UserName}</p>`;
                 newProductBtn.classList.add('active');
+                adminBtn.classList.add("active");
                 fetchProductsAdmin();
             }
         })

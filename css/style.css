@@ -114,6 +114,12 @@ form {
 .newproduct-btn {
     display: none;
 }
+.profile-btn {
+    display: none;
+}
+.adminProfile-btn {
+    display: none;
+}
 .active {
     display: block;
 }
@@ -128,6 +134,10 @@ a {
     justify-content: center;
     padding: 2rem;
     gap: 2rem;
+}
+.adminProfil, .userProfil {
+    margin-top: 4rem;
+    text-align: center;
 }
 @media (max-width: 768px) {
     .logo {
