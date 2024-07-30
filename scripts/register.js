@@ -34,9 +34,9 @@ document.getElementById('register').addEventListener('submit', async function (e
         const result = await response.json();
         if (response.ok) {
             alert.innerHTML = `<p>Sikeres regisztráció!</p>`
-            // setTimeout(() => {
-            //     window.location.href = '/egs-teszt-frontend/index.html';
-            // }, 1000);
+            setTimeout(() => {
+                window.location.href = '/egs-teszt-frontend/index.html';
+            }, 1000);
         } else {
             console.log('Hiba történt: ' + result.message);
         }
