@@ -20,7 +20,8 @@ const url = "https://thomasapi.eu"
           if (response.ok) {
               console.log('Termék sikeresen hozzáadva');
               setTimeout(() => {
-                  window.location.href = '/egs-teszt-frontend//index.html';
+                  window.location.href = '/egs-teszt-frontend/index.html';
+                //   window.location.href = '/index.html';
               }, 1000);
           } else {
               console.log('Hiba történt: ' + result.message);
@@ -29,3 +30,4 @@ const url = "https://thomasapi.eu"
           console.log('Hiba történt: ' + error.message);
       }
   });
+
