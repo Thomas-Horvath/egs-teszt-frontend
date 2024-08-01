@@ -50,7 +50,7 @@ document.getElementById('productForm').addEventListener('submit', async (event) 
     formData.set('OnSale', onSale);
     formData.set('InStock', inStock);
 
-    const response = await fetch(url + `/api/product/${productId}`, {
+    const response = await fetch(url + `/api/productupdate/${productId}`, {
         method: 'PUT',
         body: formData,
         headers: {
